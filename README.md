@@ -14,6 +14,10 @@ The apps themselves live in their own repositories and subdomains:
 
 The domain's DNS is at Squarespace. The apex has four A records pointing at GitHub Pages and `www` is a CNAME to `amceachin-code.github.io`; the three app subdomains are CNAMEs to the same host. The MX, SPF, and DKIM records carry the company email and must stay as they are.
 
+## Changing the stylesheet
+
+GitHub Pages lets browsers cache files for ten minutes, so a page change and a stylesheet change can arrive apart. When `style.css` or `favicon.svg` changes, bump the `?v=` tag on its link in `index.html` and `404.html` so both pages load the new file at once.
+
 ## Checking a change
 
 Open `index.html` in a browser, or serve the folder with `python3 -m http.server`. Every link on the page should answer 200:
