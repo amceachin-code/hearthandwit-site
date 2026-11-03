@@ -1,27 +1,79 @@
 /* One small stylesheet with no outside requests, so the page loads fast and tells no third party about a visit.
-   The colors and type match the Flip Wits site, so the company page and the app pages read as one family. */
-:root { color-scheme: light dark; --bg: #fbf7f0; --ink: #2b2420; --muted: #6b5f56; --accent: #a8431f; --rule: #e4dacb; --card: #fffdf9; }
-@media (prefers-color-scheme: dark) { :root { --bg: #1f1a17; --ink: #f3ece3; --muted: #b9ada1; --accent: #ef9a72; --rule: #40362f; --card: #2a241f; } }
+   The look follows the approved design: white ground, slate greys, one navy accent, a system sans typeface
+   (Inter where it is installed), a sticky top bar, a two-column hero, three app cards, and a light footer band. */
+:root { color-scheme: light; --bg: #ffffff; --ink: #111827; --body: #1f2937; --muted: #475569; --accent: #1e3a5f; --accent-dark: #0f2742; --rule: #e5e7eb; --tint: #f1f5f9; --band: #f3f4f6; }
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-header, main, footer { max-width: 44rem; margin: 0 auto; padding: 0 16px; }
-header { padding-top: 20px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 20px; }
-.brand { font-weight: 700; font-size: 1.1rem; color: var(--ink); text-decoration: none; }
-/* The header links get a little vertical padding so each is at least 24px tall to tap. */
-nav { display: flex; flex-wrap: wrap; gap: 0 16px; font-size: 15px; }
-nav a { padding: 6px 0; display: inline-block; }
-h1 { font-size: 2.1rem; line-height: 1.2; margin: 36px 0 8px; }
-h2 { font-size: 1.25rem; margin: 32px 0 6px; }
-h3 { font-size: 1.1rem; margin: 0 0 4px; }
-p { margin: 0 0 12px; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .card { transition: none; } }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.7 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; position: relative; }
 a { color: var(--accent); }
-/* A visible focus ring for keyboard users, on every link, in both color schemes. */
-a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
-.lede { font-size: 1.15rem; color: var(--muted); }
-/* The three apps as a list of cards: one column on a phone, three across once there is room. */
-.apps { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
-@media (min-width: 720px) { .apps { grid-template-columns: repeat(3, 1fr); } }
-.apps li { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 16px; }
-.apps li p:last-child { margin-bottom: 0; }
-.more { font-size: 15px; color: var(--muted); }
-footer { margin-top: 40px; padding-top: 16px; padding-bottom: 32px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 15px; }
+a:hover { color: var(--accent-dark); }
+/* One visible focus ring for keyboard users, on every link. */
+a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+/* The skip link sits off screen until a keyboard user tabs to it. */
+.skip { position: absolute; left: 16px; top: -48px; background: var(--accent); color: #fff; padding: 8px 12px; border-radius: 6px; z-index: 3; text-decoration: none; }
+.skip:focus { top: 12px; }
+h1, h2, h3 { line-height: 1.2; margin: 0; }
+p { margin: 0 0 14px; }
+
+/* The top bar: wordmark left, section links right, wrapping on a phone. */
+.top { position: sticky; top: 0; z-index: 2; background: rgba(255, 255, 255, .96); border-bottom: 1px solid var(--rule); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 32px; padding: 10px 40px; }
+.brand { font-size: 15px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); text-decoration: none; padding: 10px 0; }
+nav { display: flex; flex-wrap: wrap; gap: 4px 28px; }
+nav a { color: #334155; text-decoration: none; font-size: 15px; font-weight: 500; padding: 10px 0; border-bottom: 2px solid transparent; }
+nav a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* The faint line drawing sits behind the hero, off the right edge. The wrapper clips it so the page never grows wider than the window. */
+.backdrop { position: absolute; right: 0; top: 120px; width: 600px; height: 720px; overflow: hidden; color: var(--accent); opacity: .07; pointer-events: none; z-index: 0; }
+.backdrop svg { position: absolute; right: -120px; top: 0; width: 720px; height: 720px; }
+
+main { position: relative; z-index: 1; width: 100%; max-width: 1040px; margin: 0 auto; padding: 0 40px; }
+
+/* The hero: the mark beside the introduction, stacking on a phone. */
+.hero { display: flex; align-items: center; gap: 64px; padding: 96px 0 72px; }
+.mark { flex: 0 0 auto; width: 200px; height: 200px; border-radius: 50%; background: var(--tint); border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; color: var(--accent); }
+.mark svg { width: 112px; height: 112px; }
+.intro { min-width: 0; }
+h1 { font-size: 40px; font-weight: 700; color: var(--accent); margin-bottom: 12px; }
+.tagline { color: var(--muted); margin-bottom: 20px; }
+.intro p { color: var(--body); }
+.cta { margin-top: 24px; }
+/* The outlined button, in the style of the reference site's Download CV button, filled on hover. */
+.button { display: inline-flex; align-items: center; gap: 10px; border: 1.5px solid var(--accent); color: var(--accent); border-radius: 6px; padding: 12px 20px; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; min-height: 44px; }
+.button svg { width: 16px; height: 16px; }
+.button:hover { background: var(--accent); color: #fff; }
+
+/* The apps: three cards across on a desktop, one column on a phone. */
+.apps { padding: 24px 0 48px; }
+h2 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+.sub { color: var(--muted); font-size: 16px; margin-bottom: 28px; }
+.cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.card { background: var(--bg); border: 1px solid var(--rule); border-radius: 10px; padding: 28px; display: flex; flex-direction: column; gap: 12px; transition: box-shadow .15s ease; }
+.card:hover { box-shadow: 0 6px 24px rgba(15, 23, 42, .08); }
+.icon { width: 28px; height: 28px; color: var(--accent); }
+h3 { font-size: 19px; font-weight: 600; margin-top: 4px; }
+.card p { margin: 0; font-size: 15px; line-height: 1.65; color: #374151; }
+.card > p:first-of-type { flex: 1 0 auto; }
+.open { text-decoration: none; font-weight: 600; font-size: 15px; display: inline-flex; align-items: center; gap: 6px; padding: 8px 0; min-height: 44px; }
+.open svg { width: 16px; height: 16px; }
+.open:hover { text-decoration: underline; }
+.more { display: flex; flex-wrap: wrap; gap: 0 16px; border-top: 1px solid var(--tint); padding-top: 8px; }
+.more a { color: var(--muted); font-size: 14px; text-decoration: none; padding: 8px 0; display: inline-block; }
+.more a:hover { color: var(--accent); text-decoration: underline; }
+
+.support { padding: 24px 0 80px; max-width: 640px; }
+.support p { color: var(--body); }
+
+footer { position: relative; z-index: 1; background: var(--band); border-top: 1px solid var(--rule); padding: 28px 40px; }
+footer .inner { max-width: 1040px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; font-size: 14px; color: var(--muted); }
+footer a { color: var(--muted); padding: 6px 0; }
+
+@media (max-width: 760px) {
+  .top, footer { padding-left: 16px; padding-right: 16px; }
+  main { padding: 0 16px; }
+  .hero { flex-direction: column; align-items: flex-start; gap: 32px; padding: 56px 0 40px; }
+  h1 { font-size: 34px; }
+  .cards { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+  .backdrop { width: 280px; height: 480px; top: 60px; }
+  .backdrop svg { width: 480px; height: 480px; right: -200px; }
+}

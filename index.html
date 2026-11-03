@@ -9,56 +9,85 @@
 <meta property="og:description" content="Wholesome games for families and classrooms: Times Tables Games, printable worksheets, and Flip Wits. Built with intention, with no ads, no accounts, and nothing collected.">
 <meta property="og:url" content="https://hearthandwit.com/">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#fbf7f0" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1f1a17" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <a class="brand" href="/">Hearth &amp; Wit</a>
-  <nav aria-label="Apps">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="#main">Hearth &amp; Wit</a>
+  <nav aria-label="Sections">
     <a href="#times-tables-games">Times Tables Games</a>
     <a href="#worksheets">Worksheets</a>
     <a href="#flip-wits">Flip Wits</a>
     <a href="#support">Support</a>
   </nav>
 </header>
-<main id="main">
-  <h1>Wholesome games for families and classrooms.</h1>
-  <p class="lede">Built with intention, for a few minutes of real focus and for playing together.</p>
 
-  <section aria-labelledby="how">
-    <h2 id="how">How we make them</h2>
-    <p>Each app is built with intention. The games ask for a few minutes of mindful focus, and they are at their best played with someone else: a friend, a parent, a classmate. The content is made for the ages who use it. There are no ads, no accounts, and nothing designed to be hard to put down: no notifications, no rewards for coming back every day. Progress is there when you want to look, not something to chase. Nothing about you or your children is collected, and what an app saves stays on your own device.</p>
+<!-- A faint line drawing behind the hero, in place of a photo backdrop. Decorative, so hidden from screen readers.
+     The wrapper clips it at the right edge, so it never widens the page. -->
+<div class="backdrop" aria-hidden="true"><svg viewBox="0 0 720 720" fill="none" stroke="currentColor" stroke-width="1.5">
+  <circle cx="360" cy="360" r="340"/><circle cx="360" cy="360" r="280"/><circle cx="360" cy="360" r="220"/><circle cx="360" cy="360" r="160"/><circle cx="360" cy="360" r="100"/>
+  <path d="M360 300c30 40 60 60 60 110a60 60 0 0 1-120 0c0-25 10-45 30-60 0 25 8 35 18 45 10-20 12-55 12-95z"/>
+</svg></div>
+
+<main id="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="mark" aria-hidden="true">
+      <svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M48 16c10 14 22 22 22 40a22 22 0 0 1-44 0c0-10 4-18 11-24 0 10 3 15 8 19 4-8 5-22 3-35z"/>
+        <path d="M20 84h56"/>
+      </svg>
+    </div>
+    <div class="intro">
+      <h1 id="hero-title">Hearth &amp; Wit</h1>
+      <p class="tagline">Wholesome games for families and classrooms.</p>
+      <p>Each app is built with intention. The games ask for a few minutes of mindful focus, and they are at their best played with someone else: a friend, a parent, a classmate. The content is made for the ages who use it.</p>
+      <p>There are no ads, no accounts, and nothing designed to be hard to put down: no notifications, no rewards for coming back every day. Progress is there when you want to look, not something to chase. Nothing about you or your children is collected, and what an app saves stays on your own device.</p>
+      <p class="cta"><a class="button" href="mailto:ajm@hearthandwit.com"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Email ajm@hearthandwit.com</a></p>
+    </div>
   </section>
 
-  <h2 id="apps">The apps</h2>
-  <ul class="apps">
-    <li id="times-tables-games">
-      <h3><a href="https://timestables.hearthandwit.com/">Times Tables Games</a></h3>
-      <p>Practice your times tables and division with quick, friendly games. Progress and diplomas stay in the browser, and the games keep working offline.</p>
-      <p class="more"><a href="https://timestables.hearthandwit.com/privacy/">Privacy</a> · <a href="https://timestables.hearthandwit.com/accessibility/">Accessibility</a></p>
-    </li>
-    <li id="worksheets">
-      <h3><a href="https://worksheets.hearthandwit.com/">Printable worksheets</a></h3>
-      <p>Free printable times table, division, and color-by-number worksheets. Pick the facts, then print, with an answer key if you want one.</p>
-      <p class="more"><a href="https://worksheets.hearthandwit.com/division/">Division worksheets</a> · <a href="https://worksheets.hearthandwit.com/color-by-number/">Color by number</a> · <a href="https://worksheets.hearthandwit.com/privacy/">Privacy</a></p>
-    </li>
-    <li id="flip-wits">
-      <h3><a href="https://flipwits.hearthandwit.com/">Flip Wits</a></h3>
-      <p>A family party game for the phone on your forehead. Your team shouts clues, you say the answer, and you flip the phone to score. Flip Wits is in testing and not yet on the App Store.</p>
-      <p class="more"><a href="https://flipwits.hearthandwit.com/support/">Support</a> · <a href="https://flipwits.hearthandwit.com/privacy/">Privacy</a></p>
-    </li>
-  </ul>
+  <section class="apps" aria-labelledby="apps-title">
+    <h2 id="apps-title">The apps</h2>
+    <p class="sub">Each one lives at its own address. Nothing to sign up for.</p>
+    <ul class="cards">
+      <li id="times-tables-games" class="card">
+        <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+        <h3>Times Tables Games</h3>
+        <p>Practice your times tables and division with quick, friendly games. Progress and diplomas stay in the browser, and the games keep working offline.</p>
+        <a class="open" href="https://timestables.hearthandwit.com/">Open Times Tables Games<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <p class="more"><a href="https://timestables.hearthandwit.com/privacy/">Privacy</a><a href="https://timestables.hearthandwit.com/accessibility/">Accessibility</a></p>
+      </li>
+      <li id="worksheets" class="card">
+        <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="9" rx="2"/><path d="M6 14h12v7H6z"/></svg>
+        <h3>Printable worksheets</h3>
+        <p>Free printable times table, division, and color-by-number worksheets. Pick the facts, then print, with an answer key if you want one.</p>
+        <a class="open" href="https://worksheets.hearthandwit.com/">Open the worksheets<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <p class="more"><a href="https://worksheets.hearthandwit.com/division/">Division</a><a href="https://worksheets.hearthandwit.com/color-by-number/">Color by number</a><a href="https://worksheets.hearthandwit.com/privacy/">Privacy</a></p>
+      </li>
+      <li id="flip-wits" class="card">
+        <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/><path d="M3 9a9 9 0 0 1 2-4M21 15a9 9 0 0 1-2 4"/></svg>
+        <h3>Flip Wits</h3>
+        <p>A family party game for the phone on your forehead. Your team shouts clues, you say the answer, and you flip the phone to score. In testing, not yet on the App Store.</p>
+        <a class="open" href="https://flipwits.hearthandwit.com/">Open Flip Wits<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <p class="more"><a href="https://flipwits.hearthandwit.com/support/">Support</a><a href="https://flipwits.hearthandwit.com/privacy/">Privacy</a></p>
+      </li>
+    </ul>
+  </section>
 
-  <section aria-labelledby="support">
-    <h2 id="support">Support</h2>
+  <section id="support" class="support" aria-labelledby="support-title">
+    <h2 id="support-title">Support</h2>
     <p>Questions, bugs, or ideas about any of the apps? Email <a href="mailto:ajm@hearthandwit.com">ajm@hearthandwit.com</a>. Each app's privacy page says exactly what it saves and where.</p>
   </section>
 </main>
+
 <footer>
-  <p>Hearth &amp; Wit · <a href="mailto:ajm@hearthandwit.com">ajm@hearthandwit.com</a></p>
+  <div class="inner">
+    <span>Hearth &amp; Wit</span>
+    <a href="mailto:ajm@hearthandwit.com">ajm@hearthandwit.com</a>
+  </div>
 </footer>
 </body>
 </html>

@@ -2,6 +2,18 @@
 
 A dated log of the work, newest first.
 
+## 2026-11-03, The modern look
+
+### Changes
+
+- The page was redesigned on a Claude design canvas (https://claude.ai/artifact/TTCScgfwjLVwmTNpnTZrmK, desktop and phone artboards) in the clean style of the user's personal site, which they named as the reference, and rebuilt from it as plain HTML and CSS: a sticky top bar with an uppercase wordmark and section links, a two-column hero with a line-drawn hearth mark in place of a photo, the philosophy, and an outlined email button; three white app cards with line icons; a Support section; a light footer band; a faint concentric-ring line drawing behind the hero. White ground, slate greys, one navy accent, a system sans typeface (Inter where installed) so the page still makes no outside requests. Light only, matching the reference; the earlier warm palette and dark mode are gone.
+- A skip link, a visible focus ring, reduced-motion handling, and tap targets of at least 39px.
+
+### Checks
+
+- Headless Chromium at 1280, 768 and 375 wide (scratch script `hw-check.js`): no horizontal overflow, no console errors, only the page's own host requested, headings H1 > H2 > H3 in order, one each of header, nav, main and footer, the skip link first in the Tab order. Contrast of every text color at least 6.9 to 1. All ten outbound links answer 200.
+
+
 ## 2026-11-03, The home page goes live
 
 ### Changes

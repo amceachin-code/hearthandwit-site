@@ -2,7 +2,7 @@
 
 The home page of Hearth & Wit, served by GitHub Pages at https://hearthandwit.com. Plain HTML and one stylesheet, with no build step and no outside requests.
 
-The page gives the philosophy behind the apps, one short description and link for each, and the support address, so it also serves as the App Store support and marketing page.
+The page gives the philosophy behind the apps, one short description and link for each, and the support address, so it also serves as the App Store support and marketing page. Its look comes from a Claude design canvas (desktop and phone artboards), rebuilt here by hand so the page needs no build step and makes no outside requests.
 
 The apps themselves live in their own repositories and subdomains:
 
