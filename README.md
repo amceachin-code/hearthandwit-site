@@ -16,10 +16,10 @@ The domain's DNS is at Squarespace. The apex has four A records pointing at GitH
 
 ## The logo
 
-The logo is four rounded tiles: a flame for the hearth, a times sign for math, a die showing five for games, and a brain for thinking. The name sits beside it in rounded lowercase lettering with an ember-colored ampersand. The design came from a Claude design canvas (https://claude.ai/artifact/UZc7dp4b7V5o7L8tVmPri6, direction G, "Game tiles").
+The logo is four rounded tiles: a flame for the hearth, a times sign for math, a die showing five for games, and a brain for thinking. The brain is a side view in cream lines, with interlocking folds and a ring of short "idea" rays around it. The name sits beside it in rounded lowercase lettering with an ember-colored ampersand. The design came from a Claude design canvas (https://claude.ai/artifact/UZc7dp4b7V5o7L8tVmPri6, direction G, "Game tiles").
 
 - `logo.svg` is the full mark. It is used in the top bar of both pages and in the hero.
-- `favicon.svg` is a simpler version of the same tiles for a browser tab: no folds on the brain, a heavier times sign and pips.
+- `favicon.svg` is a simpler version of the same tiles for a browser tab: a solid cream brain with one groove and fewer, thicker rays, a heavier times sign and pips. The folds of the full brain turn to noise at tab size.
 - `fonts/fredoka-600-latin.woff2` is the lettering font, Fredoka, in one weight and the latin subset. `fonts/OFL.txt` is its SIL Open Font License. The font is served from the site itself, so the page still makes no outside requests. Only the name in the top bar (`.brand`) and the hero heading (`.wordmark`) use it.
 
 The name is written "Hearth & Wit" in the markup and shown lowercase by CSS, so screen readers and copied text keep the proper name.

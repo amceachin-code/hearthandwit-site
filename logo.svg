@@ -1,5 +1,5 @@
 <!-- The Hearth & Wit mark: four game tiles, one for each thing the company stands for.
-     Flame (the hearth), a times sign (math), a die showing five (games), a brain (thinking).
+     Flame (the hearth), a times sign (math), a die showing five (games), a brain with idea rays (thinking).
      Drawn from logo direction G on the design canvas named in the README.
      The tiles differ in lightness as well as hue, so they stay apart for color-blind readers.
      The viewBox starts at 5,5 so the tiles reach the edges and the mark needs no extra padding. -->
@@ -13,14 +13,54 @@
   <!-- Die tile. -->
   <rect x="5" y="51" width="40" height="40" rx="9" fill="#F2B84B"/>
   <circle cx="16" cy="62" r="3.6" fill="#1E3A5F"/><circle cx="34" cy="62" r="3.6" fill="#1E3A5F"/><circle cx="25" cy="71" r="3.6" fill="#1E3A5F"/><circle cx="16" cy="80" r="3.6" fill="#1E3A5F"/><circle cx="34" cy="80" r="3.6" fill="#1E3A5F"/>
-  <!-- Brain tile. One half is drawn and the other is its mirror image, so the two always match. -->
+  <!-- Brain tile: a side view of a brain with a ring of "idea" rays, after a line drawing the user chose.
+       It is drawn in a 100-unit box (front of the brain on the left) and scaled into the tile.
+       Lines are cream on the green tile. Each fold is drawn twice, a wide cream stroke and then a
+       narrower green one, which leaves a pair of parallel lines; later folds cover earlier ones, so
+       they seem to tuck under each other. The folds are clipped to the inside of the brain. -->
   <rect x="51" y="51" width="40" height="40" rx="9" fill="#2F6F62"/>
-  <g transform="translate(50.84 50) scale(0.42)">
-    <path d="M46 20C40 16 32 18 30 25C23 25 18 31 20 38C14 42 13 51 18 56C15 63 19 71 26 72C28 79 37 83 46 80z" fill="#FFF4E3"/>
-    <path d="M41 28C36 27 33 31 35 36M22 47C27 43 31 51 37 47M40 60C36 59 32 62 33 67" fill="none" stroke="#2F6F62" stroke-width="3.6" stroke-linecap="round"/>
-    <g transform="translate(96 0) scale(-1 1)">
-      <path d="M46 20C40 16 32 18 30 25C23 25 18 31 20 38C14 42 13 51 18 56C15 63 19 71 26 72C28 79 37 83 46 80z" fill="#FFF4E3"/>
-      <path d="M41 28C36 27 33 31 35 36M22 47C27 43 31 51 37 47M40 60C36 59 32 62 33 67" fill="none" stroke="#2F6F62" stroke-width="3.6" stroke-linecap="round"/>
+  <defs>
+    <!-- The outline of the main part of the brain: one body plus six bumps along the top and a lower lobe. -->
+    <g id="cerebrum">
+      <ellipse cx="50" cy="44" rx="38" ry="22"/>
+      <circle cx="20.1" cy="40.5" r="13"/>
+      <circle cx="26.0" cy="31.8" r="13"/>
+      <circle cx="39.2" cy="26.1" r="13"/>
+      <circle cx="55.7" cy="25.3" r="13"/>
+      <circle cx="70.5" cy="29.6" r="13"/>
+      <circle cx="79.0" cy="37.6" r="13"/>
+      <ellipse cx="40" cy="58" rx="22" ry="10"/>
     </g>
+    <clipPath id="inside-brain">
+      <ellipse cx="50" cy="44" rx="38" ry="22"/>
+      <circle cx="20.1" cy="40.5" r="13"/>
+      <circle cx="26.0" cy="31.8" r="13"/>
+      <circle cx="39.2" cy="26.1" r="13"/>
+      <circle cx="55.7" cy="25.3" r="13"/>
+      <circle cx="70.5" cy="29.6" r="13"/>
+      <circle cx="79.0" cy="37.6" r="13"/>
+      <ellipse cx="40" cy="58" rx="22" ry="10"/>
+    </clipPath>
+  </defs>
+  <g transform="translate(71 71) scale(0.255) translate(-50 -52)" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Stem and cerebellum sit behind the main part, each a cream outline around green. -->
+    <path d="M54 60L64 60L62 84Q58 88 53 84Z" fill="#FFF4E3" stroke="#FFF4E3" stroke-width="5.6"/>
+    <path d="M54 60L64 60L62 84Q58 88 53 84Z" fill="#2F6F62"/>
+    <ellipse cx="73" cy="67" rx="14" ry="9" fill="#FFF4E3" stroke="#FFF4E3" stroke-width="5.6"/>
+    <ellipse cx="73" cy="67" rx="14" ry="9" fill="#2F6F62"/>
+    <path d="M63 66Q73 63 83 65M64 71Q73 69 82 70" fill="none" stroke="#FFF4E3" stroke-width="2.8"/>
+    <!-- A wide cream stroke round every shape, then the shapes filled green, leaves only the outer outline. -->
+    <use href="#cerebrum" fill="#FFF4E3" stroke="#FFF4E3" stroke-width="5.6"/>
+    <use href="#cerebrum" fill="#2F6F62"/>
+    <g clip-path="url(#inside-brain)" fill="none">
+      <path d="M16 44C14 32 24 26 32 30C38 33 36 40 30 41" stroke="#FFF4E3" stroke-width="11"/><path d="M16 44C14 32 24 26 32 30C38 33 36 40 30 41" stroke="#2F6F62" stroke-width="5.4"/>
+      <path d="M34 20C42 14 52 18 50 26C48 32 40 30 40 37C40 43 48 45 54 41" stroke="#FFF4E3" stroke-width="11"/><path d="M34 20C42 14 52 18 50 26C48 32 40 30 40 37C40 43 48 45 54 41" stroke="#2F6F62" stroke-width="5.4"/>
+      <path d="M58 18C66 14 76 18 76 26C76 32 68 32 66 38C64 44 72 48 80 44" stroke="#FFF4E3" stroke-width="11"/><path d="M58 18C66 14 76 18 76 26C76 32 68 32 66 38C64 44 72 48 80 44" stroke="#2F6F62" stroke-width="5.4"/>
+      <path d="M80 26C88 30 90 40 86 46" stroke="#FFF4E3" stroke-width="11"/><path d="M80 26C88 30 90 40 86 46" stroke="#2F6F62" stroke-width="5.4"/>
+      <path d="M18 54C22 47 30 47 32 52C34 57 41 57 43 51C45 46 52 46 54 51C56 56 62 56 64 51C66 47 71 47 74 50" stroke="#FFF4E3" stroke-width="11"/><path d="M18 54C22 47 30 47 32 52C34 57 41 57 43 51C45 46 52 46 54 51C56 56 62 56 64 51C66 47 71 47 74 50" stroke="#2F6F62" stroke-width="5.4"/>
+      <path d="M27 63C30 58 37 58 39 62C41 66 47 66 49 61C51 57 57 58 58 62" stroke="#FFF4E3" stroke-width="11"/><path d="M27 63C30 58 37 58 39 62C41 66 47 66 49 61C51 57 57 58 58 62" stroke="#2F6F62" stroke-width="5.4"/>
+    </g>
+    <!-- Eleven rays fanned around the top and sides. -->
+    <path d="M-0.7 70.5L-12.0 74.6M-4.0 50.1L-16.0 49.7M0.7 30.0L-10.3 25.2M12.5 13.2L4.2 4.5M29.8 1.9L25.3 -9.2M50.0 -2.0L50.0 -14.0M70.2 1.9L74.7 -9.2M87.5 13.2L95.8 4.5M99.3 30.0L110.3 25.2M104.0 50.1L116.0 49.7M100.7 70.5L112.0 74.6" stroke="#FFF4E3" stroke-width="4.2"/>
   </g>
 </svg>

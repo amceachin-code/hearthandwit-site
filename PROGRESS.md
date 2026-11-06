@@ -2,6 +2,37 @@
 
 A dated log of the work, newest first.
 
+## 2026-11-05, A new brain tile
+
+Later the same day as the new logo. Pushed to `main` on 2026-11-05 on the user's go-ahead, after they saw a local preview.
+
+### Changes
+
+- The brain tile of the logo is redrawn. Outside feedback said the first brain (seen from above, two mirrored halves with curly folds) looked like worms or noodles in a bowl, and suggested a side view.
+- `logo.svg`: the brain is now a side view in cream lines on the green tile. It has an outlined bumpy silhouette, folds drawn as pairs of parallel lines that tuck under each other, a cerebellum and stem, and eleven short rays around it. Each fold is a wide cream stroke with a narrower green stroke on top, clipped to the inside of the brain by a clipPath (`inside-brain`). The outline is a `<use href="#cerebrum">` pair from `<defs>`.
+- `favicon.svg`: at tab size the brain is a solid cream shape with one green groove, the cerebellum set off, and seven thicker rays.
+- `index.html` and `404.html`: the `logo.svg` and `favicon.svg` links are bumped from `?v=3` to `?v=4`. `style.css` is unchanged and stays at `?v=3`.
+- The design canvas (https://claude.ai/artifact/UZc7dp4b7V5o7L8tVmPri6) has two new boards, "G · Brain tile options" and "G · Brain, reference style", and board G now shows the new brain.
+
+### Decisions
+
+- A side view with outlined, interlocking folds and a ring of idea rays, option 4, "Bright idea" (the user, 2026-11-05). Two plain side views were rejected first. The user then shared a reference picture, a line drawing of a side-view brain with idea rays, and chose from three tiles drawn in that style. The drawing is original, in the reference's style, not a trace.
+- The favicon gets its own simpler brain, because the folds turn to noise at 16 to 32 pixels. A version with three grooves was tried and dropped, because at 64 pixels it looked like a face.
+
+### Files touched
+
+- Changed: `logo.svg`, `favicon.svg`, `index.html`, `404.html`, `README.md`, `PROGRESS.md`.
+
+### Checks
+
+- Both SVGs rendered in headless Chromium: the logo at 200, 96, 40 and 28 pixels, the tab icon at 64, 32 and 16.
+- In the browser on a local server at 1280 and 375 wide: both logo images load, the favicon link is `?v=4`, no horizontal overflow, no requests to outside hosts. The 404 page loads the new logo.
+- Not run: axe-core. The outbound links were not re-checked, since they were not changed.
+
+### Next steps
+
+- After a push, confirm the live `logo.svg?v=4` and `favicon.svg?v=4` answer 200 with the new drawings.
+
 ## 2026-11-05, The new logo
 
 Pushed to `main` on 2026-11-05 on the user's go-ahead, after they saw a local preview.
