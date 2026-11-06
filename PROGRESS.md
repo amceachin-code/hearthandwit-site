@@ -31,7 +31,12 @@ Later the same day as the new logo. Pushed to `main` on 2026-11-05 on the user's
 
 ### Next steps
 
-- After a push, confirm the live `logo.svg?v=4` and `favicon.svg?v=4` answer 200 with the new drawings.
+- None for the brain tile. The live check is recorded below.
+
+### Live
+
+- Commit fb3a545 was live at https://hearthandwit.com/ about 30 seconds after the push. The home page, `logo.svg?v=4` and `favicon.svg?v=4` answer 200 with the new drawings, and the custom 404 page shows the new logo.
+- Checked with requests from the command line, not in a browser on the live address.
 
 ## 2026-11-05, The new logo
 
