@@ -1,6 +1,10 @@
 /* One small stylesheet with no outside requests, so the page loads fast and tells no third party about a visit.
    The look follows the approved design: white ground, slate greys, one navy accent, a system sans typeface
    (Inter where it is installed), a sticky top bar, a two-column hero, three app cards, and a light footer band. */
+/* The logo's lettering is Fredoka (SIL Open Font License, fonts/OFL.txt). The file is kept in this folder, not
+   loaded from Google, so the page still makes no outside requests. It holds one weight and is used only for the
+   name in the top bar and the hero. "swap" shows the system font at once and trades it for Fredoka when it arrives. */
+@font-face { font-family: "Fredoka"; src: url("fonts/fredoka-600-latin.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
 :root { color-scheme: light; --bg: #ffffff; --ink: #111827; --body: #1f2937; --muted: #475569; --accent: #1e3a5f; --accent-dark: #0f2742; --rule: #e5e7eb; --tint: #f1f5f9; --band: #f3f4f6; }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -18,7 +22,10 @@ p { margin: 0 0 14px; }
 
 /* The top bar: wordmark left, section links right, wrapping on a phone. */
 .top { position: sticky; top: 0; z-index: 2; background: rgba(255, 255, 255, .96); border-bottom: 1px solid var(--rule); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 32px; padding: 10px 40px; }
-.brand { font-size: 15px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); text-decoration: none; padding: 10px 0; }
+/* The logo: the tile mark and the name in the logo's rounded lowercase lettering. 28px of mark plus 8px of
+   padding above and below keeps the link 44px tall for a finger. */
+.brand { display: inline-flex; align-items: center; gap: 10px; font-family: Fredoka, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 22px; font-weight: 600; line-height: 1; letter-spacing: -.01em; text-transform: lowercase; color: var(--accent); text-decoration: none; padding: 8px 0; }
+.brand img { width: 28px; height: 28px; display: block; }
 nav { display: flex; flex-wrap: wrap; gap: 4px 28px; }
 nav a { color: #334155; text-decoration: none; font-size: 15px; font-weight: 500; padding: 10px 0; border-bottom: 2px solid transparent; }
 nav a:hover { color: var(--accent); border-bottom-color: var(--accent); }
@@ -31,10 +38,14 @@ main { position: relative; z-index: 1; width: 100%; max-width: 1040px; margin: 0
 
 /* The hero: the mark beside the introduction, stacking on a phone. */
 .hero { display: flex; align-items: center; gap: 64px; padding: 96px 0 72px; }
-.mark { flex: 0 0 auto; width: 200px; height: 200px; border-radius: 50%; background: var(--tint); border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; color: var(--accent); }
-.mark svg { width: 112px; height: 112px; }
+.mark { flex: 0 0 auto; width: 200px; height: 200px; }
+.mark img { width: 100%; height: 100%; display: block; }
 .intro { min-width: 0; }
 h1 { font-size: 40px; font-weight: 700; color: var(--accent); margin-bottom: 12px; }
+/* The hero's name is the logo's wordmark. It is a class, not the bare h1, so the 404 page's heading keeps the plain style.
+   The ampersand takes the flame tile's color, darkened to #c2481a so it holds 4.9:1 against white. */
+.wordmark { font-family: Fredoka, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 52px; font-weight: 600; line-height: 1.1; letter-spacing: -.01em; text-transform: lowercase; }
+.wordmark .amp { color: #c2481a; }
 .tagline { color: var(--muted); margin-bottom: 20px; }
 .intro p { color: var(--body); }
 .cta { margin-top: 24px; }
@@ -73,6 +84,8 @@ footer a { color: var(--muted); padding: 6px 0; }
   main { padding: 0 16px; }
   .hero { flex-direction: column; align-items: flex-start; gap: 32px; padding: 56px 0 40px; }
   h1 { font-size: 34px; }
+  .wordmark { font-size: 42px; }
+  .mark { width: 152px; height: 152px; }
   .cards { grid-template-columns: repeat(1, minmax(0, 1fr)); }
   .backdrop { width: 280px; height: 480px; top: 60px; }
   .backdrop svg { width: 480px; height: 480px; right: -200px; }

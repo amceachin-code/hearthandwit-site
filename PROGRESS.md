@@ -2,6 +2,42 @@
 
 A dated log of the work, newest first.
 
+## 2026-11-05, The new logo
+
+Pushed to `main` on 2026-11-05 on the user's go-ahead, after they saw a local preview.
+
+### Changes
+
+- A new logo, chosen by the user from a Claude design canvas (https://claude.ai/artifact/UZc7dp4b7V5o7L8tVmPri6, direction G, "Game tiles"): four rounded tiles, a flame (the hearth), a times sign (math), a die showing five (games), and a brain (thinking), with the name in rounded lowercase Fredoka lettering and an ember-colored ampersand. The user's steer was that the logo should balance the cosy hearth feeling with games, math, brains and thinking. The first round of ideas leaned too far toward cabin and fire.
+- `logo.svg` is new and holds the full mark. It is shown at 28px in the top bar and at 200px in the hero, 152px on a phone. `favicon.svg` is replaced with a simpler version of the same tiles for browser-tab size: no brain folds, a heavier times sign and pips.
+- A new `fonts/` folder holds `fredoka-600-latin.woff2` (16 KB, one weight, latin subset, downloaded from Google Fonts) and `OFL.txt`, its SIL Open Font License. The font is served from the site itself, so the page still makes no outside requests. It is used only for the name in the top bar (`.brand`) and the hero heading (`.wordmark`).
+- `index.html`: the top bar brand is now the tile image plus the name. The hero's line-drawn flame in a grey circle is replaced by the tile mark. The hero h1 has the class `wordmark` and its ampersand is wrapped in `span.amp`.
+- `404.html`: the same brand in the top bar. Its own h1 keeps the plain style.
+- Both pages' stylesheet and favicon links are bumped from `?v=2` to `?v=3`, and `logo.svg` is linked with `?v=3` too.
+- `style.css`: an `@font-face` rule for Fredoka, new `.brand` and `.brand img` rules, `.mark` without the circle, new `.wordmark` and `.wordmark .amp` rules (ampersand `#c2481a`, 4.9 to 1 on white), and phone sizes for `.wordmark` (42px) and `.mark` (152px).
+- Left unchanged on purpose: the faint concentric-rings backdrop with its line flame, the navy accent, the app cards and their line icons, and the footer.
+
+### Decisions
+
+- The full logo G with a self-hosted font rather than the tiles alone (the user, 2026-11-05). Serving the one font file from the site keeps the promise of no outside requests.
+- The favicon is a simplified cut of the tiles, not the full mark, because the brain folds and thin strokes do not hold up at browser-tab size.
+- The name stays capitalised as "Hearth & Wit" in the markup and is shown lowercase by CSS, so screen readers and copied text keep the proper name.
+
+### Files touched
+
+- New: `logo.svg`, `fonts/fredoka-600-latin.woff2`, `fonts/OFL.txt`.
+- Changed: `favicon.svg`, `index.html`, `404.html`, `style.css`, `README.md`, `PROGRESS.md`.
+
+### Checks
+
+- In the browser on a local server at 1280, 737 and 375 wide: no horizontal overflow, no console errors, Fredoka loads from the site's own folder, no requests to outside hosts. The brand link is 44px tall. The wordmark stays on one line at 375. The 404 page shows the new brand and keeps its plain heading.
+- Not run: axe-core. The ten outbound links were not re-checked, since they were not changed.
+
+### Next steps
+
+- After a push, confirm the live page and that browsers pick up `?v=3`.
+
+
 ## 2026-11-03, The modern look
 
 ### Changes

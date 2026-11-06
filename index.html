@@ -10,13 +10,14 @@
 <meta property="og:url" content="https://hearthandwit.com/">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#ffffff">
-<link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=2">
+<link rel="icon" href="favicon.svg?v=3" type="image/svg+xml">
+<link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="top">
-  <a class="brand" href="#main">Hearth &amp; Wit</a>
+  <!-- The logo: the four tiles beside the name. The image is decorative (empty alt) because the name is right next to it. -->
+  <a class="brand" href="#main"><img src="logo.svg?v=3" alt="" width="28" height="28">Hearth &amp; Wit</a>
   <nav aria-label="Sections">
     <a href="#times-tables-games">Times Tables Games</a>
     <a href="#worksheets">Worksheets</a>
@@ -34,14 +35,10 @@
 
 <main id="main">
   <section class="hero" aria-labelledby="hero-title">
-    <div class="mark" aria-hidden="true">
-      <svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M48 16c10 14 22 22 22 40a22 22 0 0 1-44 0c0-10 4-18 11-24 0 10 3 15 8 19 4-8 5-22 3-35z"/>
-        <path d="M20 84h56"/>
-      </svg>
-    </div>
+    <div class="mark" aria-hidden="true"><img src="logo.svg?v=3" alt="" width="200" height="200"></div>
     <div class="intro">
-      <h1 id="hero-title">Hearth &amp; Wit</h1>
+      <!-- The name is written with capitals here and shown lowercase by the stylesheet, so screen readers and copied text keep the proper name. -->
+      <h1 id="hero-title" class="wordmark">Hearth <span class="amp">&amp;</span> Wit</h1>
       <p class="tagline">Wholesome games for families and classrooms.</p>
       <p>Each app is built with intention. The games ask for a few minutes of mindful focus, and they are at their best played with someone else: a friend, a parent, a classmate. The content is made for the ages who use it.</p>
       <p>There are no ads, no accounts, and nothing designed to be hard to put down: no notifications, no rewards for coming back every day. Progress is there when you want to look, not something to chase. Nothing about you or your children is collected, and what an app saves stays on your own device.</p>
