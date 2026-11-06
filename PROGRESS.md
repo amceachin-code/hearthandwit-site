@@ -2,6 +2,36 @@
 
 A dated log of the work, newest first.
 
+## 2026-11-06, Each app as a phone
+
+Pushed to `main` on 2026-11-06 on the user's go-ahead, after they saw screenshots of a local preview.
+
+### Changes
+
+- Outside feedback said the three apps were hard to tell apart (three identical white cards with navy line icons). The user asked for options, and on a new Claude design canvas (https://claude.ai/artifact/QHAFT6kerAe4Q3CWxsMuzw) chose option G, "Phones, real screens", a follow-up to option E.
+- `index.html`: only "The apps" section changed. Each app is a phone drawn in HTML and CSS showing its real first screen: Times Tables Games' table picker in a phone's browser, the worksheets form in a new answer-key red with a printed sheet sliding out, and Flip Wits held sideways on its turn screen. Under each phone: the app's own mark (inline SVG) beside the name, the description, an Open button in the app's color, and the small links. The hero, Support section and footer are unchanged.
+- Each app now has its own color and mark: Times Tables Games keeps pencil yellow and its times-sign tile; the worksheets get answer-key red #B3261E and a sheet mark; Flip Wits gets its iOS icon, the white 42 and green bar on near-black. The three step light, mid and dark, so they stay apart in grayscale.
+- `style.css`: the old card rules are replaced by commented blocks for the stage, the phones, each screen (`.ttg-`, `.ws-`, `.fw-`), and the text under each phone. The apps section has a white ground so the hero's faint backdrop no longer shows through. The footer link is 44px tall. The stylesheet link is `?v=4` in both pages.
+- `fonts/`: Andika 400 and 700 and its license, copied from the times-tables-games repository, for the game and worksheets screens. Flip Wits' numerals use the site's Fredoka. Still no outside requests.
+- `README.md`: a section on the app phones.
+- The same day, the worksheets site and the Flip Wits site got new tab icons to match (the red sheet, and the 42), in their own repositories.
+
+### Decisions
+
+- Phones showing real screens, so a visitor sees what each app is before tapping (the user, 2026-11-06). The two websites show their address in a browser strip; only Flip Wits is drawn as an installed app, and there are no App Store badges or fake status bars.
+- Each drawing is one `role="img"` with a description, and its parts carry `aria-hidden`, because Chromium does not hide the children of `role="img"` on its own.
+- At 1020px and narrower the phones stack one per row, each held to 480px.
+
+### Checks
+
+- Headless Chromium at 1440, 1280, 1024, 1020, 1019, 900, 768, 390, 375 and 320 wide: no horizontal overflow, nothing clipped, phones in the design's positions to within a third of a pixel, Andika and Fredoka load from the site, every request to the site's own host, no console errors.
+- Accessibility: heading order, landmarks, skip link first, every link reachable by Tab with a visible focus ring, no Tab stops inside the drawings, each drawing exposed as one image with no inner text, every text color pair at least 4.5:1, every link at least 44px tall at 390 wide, every outbound link answers 200.
+- Not run: axe-core.
+
+### Next steps
+
+- When an app's first screen changes, redraw its phone and update its description (README, "The app phones").
+
 ## 2026-11-05, A new brain tile
 
 Later the same day as the new logo. Pushed to `main` on 2026-11-05 on the user's go-ahead, after they saw a local preview.

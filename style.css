@@ -1,14 +1,19 @@
 /* One small stylesheet with no outside requests, so the page loads fast and tells no third party about a visit.
    The look follows the approved design: white ground, slate greys, one navy accent, a system sans typeface
-   (Inter where it is installed), a sticky top bar, a two-column hero, three app cards, and a light footer band. */
+   (Inter where it is installed), a sticky top bar, a two-column hero, three app phones, and a light footer band. */
 /* The logo's lettering is Fredoka (SIL Open Font License, fonts/OFL.txt). The file is kept in this folder, not
-   loaded from Google, so the page still makes no outside requests. It holds one weight and is used only for the
-   name in the top bar and the hero. "swap" shows the system font at once and trades it for Fredoka when it arrives. */
+   loaded from Google, so the page still makes no outside requests. It holds one weight and is used for the
+   name in the top bar and the hero, and for the numerals on the drawing of Flip Wits' screen. "swap" shows the system font at once and trades it for Fredoka when it arrives. */
 @font-face { font-family: "Fredoka"; src: url("fonts/fredoka-600-latin.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
-:root { color-scheme: light; --bg: #ffffff; --ink: #111827; --body: #1f2937; --muted: #475569; --accent: #1e3a5f; --accent-dark: #0f2742; --rule: #e5e7eb; --tint: #f1f5f9; --band: #f3f4f6; }
+/* Andika (SIL Open Font License, fonts/OFL-Andika.txt) is Times Tables Games' own typeface, copied from that app's
+   repository so the drawings of the Times Tables Games and worksheets screens look like the real ones without a
+   request to Google. Flip Wits' screen uses the Fredoka above, and the small screen text uses the system sans. */
+@font-face { font-family: "Andika"; src: url("fonts/andika-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Andika"; src: url("fonts/andika-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+:root { color-scheme: light; --bg: #ffffff; --ink: #111827; --body: #1f2937; --muted: #475569; --accent: #1e3a5f; --accent-dark: #0f2742; --rule: #e5e7eb; --band: #f3f4f6; --sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .card { transition: none; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.7 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; position: relative; }
 a { color: var(--accent); }
 a:hover { color: var(--accent-dark); }
@@ -54,30 +59,177 @@ h1 { font-size: 40px; font-weight: 700; color: var(--accent); margin-bottom: 12p
 .button svg { width: 16px; height: 16px; }
 .button:hover { background: var(--accent); color: #fff; }
 
-/* The apps: three cards across on a desktop, one column on a phone. */
-.apps { padding: 24px 0 48px; }
+/* The apps: three phones in a row, each with its app's name, description, Open button and small links below.
+   Every stage is the same height (590px, room for the worksheet that hangs below its phone), and the
+   description takes the spare height, so the names, buttons and links line up across the row. */
+/* The faint hero drawing (.backdrop) runs down past the hero's bottom on a wide screen. The old cards had a white
+   ground that hid it; the stages are see-through, so the section gets its own white ground instead. The spread
+   shadow carries that white out to both window edges (the drawing sits off the right edge, beyond main), and the
+   clip-path keeps the shadow from spilling above or below the section. Neither adds to the page's width. */
+.apps { padding: 24px 0 72px; position: relative; background: var(--bg); box-shadow: 0 0 0 100vmax var(--bg); clip-path: inset(0 -100vmax); }
 h2 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
-.sub { color: var(--muted); font-size: 16px; margin-bottom: 28px; }
-.cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
-.card { background: var(--bg); border: 1px solid var(--rule); border-radius: 10px; padding: 28px; display: flex; flex-direction: column; gap: 12px; transition: box-shadow .15s ease; }
-.card:hover { box-shadow: 0 6px 24px rgba(15, 23, 42, .08); }
-.icon { width: 28px; height: 28px; color: var(--accent); }
-h3 { font-size: 19px; font-weight: 600; margin-top: 4px; }
-.card p { margin: 0; font-size: 15px; line-height: 1.65; color: #374151; }
-.card > p:first-of-type { flex: 1 0 auto; }
-.open { text-decoration: none; font-weight: 600; font-size: 15px; display: inline-flex; align-items: center; gap: 6px; padding: 8px 0; min-height: 44px; }
-.open svg { width: 16px; height: 16px; }
+.sub { color: var(--muted); font-size: 16px; margin-bottom: 40px; }
+.app-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; align-items: stretch; }
+.app { display: flex; flex-direction: column; min-width: 0; }
+.stage { position: relative; height: 590px; display: flex; justify-content: center; align-items: flex-start; }
+
+/* The phone body: one neutral dark grey for all three, so each app's color lives on its screen.
+   The side keys are the two pseudo-elements: the second volume key is the first one's shadow, 36px lower. */
+.phone { position: relative; flex: 0 0 auto; width: 248px; height: 508px; padding: 8px; background: #2E3036; border-radius: 40px; box-shadow: 0 16px 30px rgba(15, 23, 42, .18), inset 0 0 0 1px #474A52; }
+.phone::before, .phone::after { content: ""; position: absolute; background: #2E3036; }
+.phone::before { left: -3px; top: 112px; width: 3px; height: 28px; border-radius: 2px 0 0 2px; box-shadow: 0 36px 0 #2E3036; }
+.phone::after { right: -3px; top: 132px; width: 3px; height: 48px; border-radius: 0 2px 2px 0; }
+/* The glass. It clips the drawing like a real screen, and its ::after is the home bar, in the screen's ink color. */
+.screen { position: relative; width: 100%; height: 100%; border-radius: 32px; overflow: hidden; display: flex; flex-direction: column; }
+.screen::after { content: ""; position: absolute; left: 50%; bottom: 6px; width: 84px; height: 4px; margin-left: -42px; border-radius: 2px; background: currentColor; }
+/* The browser strip of the two websites: the camera island (::before) above the real address. No status bar. */
+.browser { position: relative; flex: 0 0 auto; background: #fff; border-bottom: 1px solid #D5DBE3; padding: 32px 12px 8px; }
+.browser::before { content: ""; position: absolute; top: 9px; left: 50%; width: 68px; height: 19px; margin-left: -34px; border-radius: 10px; background: #0B0B0F; }
+.url { height: 24px; border-radius: 8px; background: #EEF1F5; display: flex; align-items: center; justify-content: center; font-family: var(--sans); font-size: 10.5px; font-weight: 500; line-height: 1; color: #334155; }
+
+/* Times Tables Games' table picker, after the live screen: Andika (the app's own typeface) for its type,
+   the system sans for the small text. Picked items are yellow with a dark edge, as in the app. */
+.ttg { background: #E7ECF2; color: #1B2330; }
+.ttg-page { flex: 1; display: flex; flex-direction: column; gap: 7px; padding: 10px 12px; font-family: Andika, var(--sans); line-height: 1; }
+.ttg-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px; height: 24px; }
+.ttg-name { display: flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 700; }
+.ttg-name svg { display: block; width: 18px; height: 18px; }
+.ttg-links { display: flex; gap: 10px; font-size: 10px; font-weight: 700; color: #4B5563; }
+.ttg-title { margin-top: 2px; font-size: 18px; font-weight: 700; line-height: 1.15; letter-spacing: -.01em; }
+.ttg-hint, .ttg-note { font-family: var(--sans); font-size: 9px; line-height: 12.5px; color: #4B5563; }
+.ttg-card { display: flex; flex-direction: column; gap: 7px; margin-top: 2px; padding: 9px; background: #fff; border-radius: 12px; }
+.ttg-mode { display: grid; grid-template-columns: 1fr 1fr; height: 26px; border: 1px solid #CBD5E1; border-radius: 8px; overflow: hidden; font-size: 10.5px; font-weight: 700; }
+.ttg-mode span, .ttg-range-seg span { display: flex; align-items: center; justify-content: center; background: #F1F4F8; }
+.ttg-mode .on, .ttg-range-seg .on { background: #F5C13E; color: #2A2206; box-shadow: inset 0 0 0 2px #2A2206; border-radius: 7px 0 0 7px; }
+/* The 4 by 3 grid of tables. Each tile's ::after is its progress bar. */
+.ttg-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5px; font-size: 14px; font-weight: 700; }
+.ttg-tiles span { height: 36px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; border-radius: 7px; background: #F4F6F9; border: 1.5px solid #CBD5E1; }
+.ttg-tiles span::after { content: ""; display: block; width: 18px; height: 3px; border-radius: 2px; background: #E2E8F0; box-shadow: 0 0 0 .75px #94A3B8; }
+.ttg-tiles .on { background: #F5C13E; border: 2px solid #2A2206; color: #2A2206; }
+.ttg-tiles .on::after { background: #E3AE2A; box-shadow: 0 0 0 .75px #2A2206; }
+.ttg-chips { display: flex; flex-wrap: wrap; gap: 4px; font-family: var(--sans); font-size: 8.5px; line-height: 1.2; }
+.ttg-chips span { padding: 3px 6px; border: 1px solid #CBD5E1; border-radius: 6px; background: #fff; }
+.ttg-note { line-height: 1.3; }
+.ttg-range { border-top: 1px solid #CBD5E1; padding-top: 7px; display: flex; flex-direction: column; gap: 5px; font-family: var(--sans); font-size: 10px; line-height: 1.2; }
+.ttg-range-seg { align-self: flex-end; display: grid; grid-template-columns: auto auto auto; height: 22px; border: 1px solid #CBD5E1; border-radius: 7px; overflow: hidden; font-family: Andika, var(--sans); font-size: 9.5px; font-weight: 700; line-height: 1; }
+.ttg-range-seg span { padding: 0 7px; }
+.ttg-range-seg span + span { border-left: 1px solid #CBD5E1; }
+.ttg-range-seg .on { border-radius: 6px 0 0 6px; }
+
+/* The worksheets form, in its answer-key red, shortened (no Grid fields or extra Sheet options) so the
+   Print worksheet button sits above the printed sheet. The bottom padding leaves the screen's foot for the sheet. */
+.ws { background: #F5F7FA; color: #1A202C; }
+.ws-page { flex: 1; display: flex; flex-direction: column; gap: 4px; padding: 10px 12px 84px; font-family: var(--sans); font-size: 9.5px; line-height: 1.3; }
+.ws-title { font-family: Andika, var(--sans); font-size: 16px; font-weight: 700; line-height: 1.15; }
+.ws-hint { font-size: 9px; line-height: 12.5px; color: #4B5563; }
+.ws-link { color: #B3261E; text-decoration: underline; }
+.ws-label { margin-top: 5px; font-size: 8px; font-weight: 700; line-height: 1.2; letter-spacing: .08em; text-transform: uppercase; color: #4B5563; }
+.ws-field { height: 22px; display: flex; align-items: center; padding: 0 7px; background: #fff; border: 1px solid #CBD5E1; border-radius: 6px; font-family: ui-monospace, Menlo, monospace; font-size: 10px; }
+.ws-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 8px; }
+/* The live site's dark fill for a chosen option becomes the new red. A divider sits between two unchosen options. */
+.ws-seg { display: grid; grid-template-columns: 1fr 1fr; height: 22px; border: 1px solid #CBD5E1; border-radius: 6px; overflow: hidden; background: #fff; line-height: 1; }
+.ws-seg-3 { grid-template-columns: 1fr 1fr 1fr; }
+.ws-seg span { display: flex; align-items: center; justify-content: center; }
+.ws-seg span:not(.on) + span:not(.on) { border-left: 1px solid #CBD5E1; }
+.ws-seg .on { background: #B3261E; color: #fff; font-weight: 700; }
+.ws-print { margin-top: auto; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 7px; background: #B3261E; color: #fff; font-size: 10px; font-weight: 700; line-height: 1; }
+/* The printed sheet hangs out of the phone's foot, tilted 3 degrees, on the cream paper of the worksheets mark:
+   Name and Date lines, the default title, and stacked 4 x n problems over answer lines (each problem's ::after). */
+.ws-sheet { position: absolute; left: 40px; top: 428px; width: 192px; padding: 10px 12px 8px; background: #FFF9EE; border-radius: 2px; transform: rotate(-3deg); transform-origin: 50% 0; box-shadow: 0 0 0 1px rgba(59, 53, 45, .2), 0 12px 20px rgba(15, 23, 42, .2); font-family: var(--sans); color: #1A202C; }
+.ws-sheet-lines { display: flex; gap: 10px; font-size: 7.5px; line-height: 1; color: #3B352D; }
+.ws-sheet-lines span { display: flex; align-items: flex-end; gap: 3px; flex: 1; }
+.ws-sheet-lines span:first-child { flex: 1.5; }
+.ws-sheet-lines span::after { content: ""; flex: 1; border-bottom: 1px solid #3B352D; }
+.ws-sheet-title { margin-top: 8px; font-size: 10px; font-weight: 700; line-height: 1.2; }
+.ws-probs { margin-top: 6px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; font-size: 11px; font-weight: 600; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.ws-probs > span { justify-self: center; width: 28px; display: flex; flex-direction: column; align-items: flex-end; padding-bottom: 12px; white-space: nowrap; }
+.ws-probs > span::after { content: ""; align-self: stretch; margin-top: 1px; border-top: 1.5px solid #1A202C; }
+
+/* Flip Wits on a pale disc with two turning arcs. Its stage holds the disc and the phone at fixed spots, with the
+   phone centered on the same line as the middle of the two upright phones. */
+.fw-stage { display: block; }
+.fw-disc { position: absolute; left: 50%; top: 114px; width: 280px; height: 280px; margin-left: -140px; display: block; }
+/* The phone held sideways. Its camera is on the left, so the top of the phone points left: the volume keys
+   (the left edge when upright) are on the bottom edge and the side key is on the top edge. */
+.phone-side { position: absolute; left: 50%; top: 184px; width: 290px; height: 140px; margin-left: -145px; border-radius: 34px; box-shadow: 0 16px 30px rgba(15, 23, 42, .22), inset 0 0 0 1px #474A52; }
+.phone-side::before { left: 112px; top: auto; bottom: -3px; width: 28px; height: 3px; border-radius: 0 0 2px 2px; box-shadow: 36px 0 0 #2E3036; }
+.phone-side::after { left: 132px; right: auto; top: -3px; width: 48px; height: 3px; border-radius: 2px 2px 0 0; }
+/* The turn screen, scaled down with the small text enlarged so it still reads. Its rounded numerals use the
+   site's own Fredoka, which has one weight (600), so everything here is set at 600 to avoid a faked bold.
+   No home bar on this screen; its ::before is the camera island at the left edge. */
+.fw { background: #0B0B0F; color: #fff; font-family: Fredoka, var(--sans); font-weight: 600; padding: 8px 14px 7px 32px; gap: 3px; border-radius: 26px; font-variant-numeric: tabular-nums; line-height: 1.1; white-space: nowrap; }
+.fw::after { content: none; }
+.fw::before { content: ""; position: absolute; left: 8px; top: 50%; width: 15px; height: 44px; margin-top: -22px; border-radius: 8px; background: #000; box-shadow: 0 0 0 1px #1C1C24; }
+.fw svg { display: block; }
+.fw-top { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 6px; font-size: 7.5px; }
+.fw-team { display: flex; align-items: center; gap: 3px; }
+.fw-team::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #EB4F72; }
+.fw-deck { padding: 1px 5px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .4); font-size: 7px; }
+.fw-score { justify-self: end; display: flex; align-items: center; gap: 6px; font-size: 11px; }
+.fw-got, .fw-pass { display: flex; align-items: center; gap: 2px; }
+.fw-got { color: #1FB889; }
+.fw-pass { color: #F07A1A; }
+.fw-score svg { width: 9px; height: 9px; }
+/* The turn timer: a bar that runs down, and the time left. */
+.fw-timer { display: flex; align-items: center; gap: 6px; font-size: 8px; line-height: 1; }
+.fw-track { flex: 1; height: 3px; border-radius: 999px; background: rgba(255, 255, 255, .4); overflow: hidden; }
+.fw-track span { display: block; width: 62%; height: 100%; border-radius: 999px; background: #fff; }
+.fw-number { flex: 1; display: flex; align-items: center; justify-content: center; font-size: 66px; line-height: .82; letter-spacing: -.02em; }
+.fw-foot { display: flex; align-items: center; justify-content: space-between; gap: 6px; font-size: 7px; }
+.fw-last { display: flex; align-items: center; gap: 3px; padding: 2px 5px; border-radius: 5px; background: rgba(255, 255, 255, .12); }
+.fw-last svg { width: 7px; height: 7px; }
+.fw-ops { display: flex; gap: 3px; font-size: 8px; line-height: 1; }
+.fw-ops span { position: relative; width: 14px; height: 11px; display: flex; align-items: center; justify-content: center; border-radius: 3px; background: #fff; color: #0B0B0F; }
+/* An operation that is off: outlined, dimmed, and struck through by its ::after. */
+.fw-ops .off { background: none; border: 1px solid rgba(255, 255, 255, .4); color: rgba(255, 255, 255, .5); }
+.fw-ops .off::after { content: ""; position: absolute; left: 50%; top: 50%; width: 1.15em; height: 1px; background: currentColor; transform: translate(-50%, -50%) rotate(-50deg); }
+.fw-end { color: rgba(255, 255, 255, .6); }
+
+/* Under each phone: the app's mark beside its name, then the description, which takes the spare height. */
+.app-body { flex: 1; display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+.app-head { display: flex; align-items: center; gap: 12px; }
+.app-mark { display: block; flex: 0 0 auto; width: 40px; height: 40px; }
+h3 { font-size: 19px; font-weight: 600; line-height: 1.25; color: var(--ink); }
+.app-desc { margin: 0; flex: 1 0 auto; font-size: 15px; line-height: 26px; color: #374151; }
+/* The Open button in each app's own color, with a darker lip under it. The colors are set per app below,
+   and hover keeps them (the page's general link hover would turn the text navy). All three hold at least 4.5:1. */
+.open { display: flex; align-items: center; justify-content: center; text-align: center; gap: 8px; min-height: 48px; padding: 10px 14px; background: var(--app-bg); border-radius: 12px; box-shadow: 0 3px 0 var(--app-lip); font-size: 15px; font-weight: 600; line-height: 1.3; text-decoration: none; }
+.open, .open:hover { color: var(--app-ink); }
 .open:hover { text-decoration: underline; }
-.more { display: flex; flex-wrap: wrap; gap: 0 16px; border-top: 1px solid var(--tint); padding-top: 8px; }
-.more a { color: var(--muted); font-size: 14px; text-decoration: none; padding: 8px 0; display: inline-block; }
-.more a:hover { color: var(--accent); text-decoration: underline; }
+.open svg { flex: 0 0 auto; width: 16px; height: 16px; color: var(--app-arrow, currentColor); }
+.app-ttg { --app-bg: #F5C13E; --app-ink: #2A2206; --app-lip: #C99A22; }
+.app-ws { --app-bg: #B3261E; --app-ink: #fff; --app-lip: #7E1A15; }
+.app-fw { --app-bg: #0B0B0F; --app-ink: #fff; --app-lip: #1FB889; --app-arrow: #1FB889; }
+.more { margin: 4px 0 0; display: flex; flex-wrap: wrap; gap: 0 16px; }
+.more a { display: inline-flex; align-items: center; min-height: 44px; color: var(--muted); font-size: 14px; text-decoration: none; }
+.more a:hover { color: var(--ink); text-decoration: underline; }
+
+/* At 1020px and narrower the three phones get too tight across, so the apps stack one per row. Each row is held to a
+   readable column, centered under its phone, so the button and text do not stretch across a tablet.
+   Stacked, a stage only needs its own drawing's height: the phone plus a little, the worksheet with its sheet,
+   and a short stage for the sideways phone, as on the phone design. */
+@media (max-width: 1020px) {
+  .app-list { grid-template-columns: minmax(0, 1fr); gap: 56px; }
+  .app { width: 100%; max-width: 480px; justify-self: center; }
+  .app-ttg .stage { height: 524px; }
+  .app-ws .stage { height: 592px; }
+  .fw-stage { height: 300px; }
+  .fw-disc { top: 10px; }
+  .phone-side { top: 80px; }
+  .app-body { margin-top: 20px; }
+}
+/* On the narrowest phones the sideways phone (290px) is a hair wider than the column, so it is drawn a little smaller. */
+@media (max-width: 340px) {
+  .phone-side { transform: scale(.92); }
+}
 
 .support { padding: 24px 0 80px; max-width: 640px; }
 .support p { color: var(--body); }
 
 footer { position: relative; z-index: 1; background: var(--band); border-top: 1px solid var(--rule); padding: 28px 40px; }
 footer .inner { max-width: 1040px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; font-size: 14px; color: var(--muted); }
-footer a { color: var(--muted); padding: 6px 0; }
+/* Footer links are held 44px tall so they are easy to tap on a phone. */
+footer a { display: inline-flex; align-items: center; min-height: 44px; color: var(--muted); }
 
 @media (max-width: 760px) {
   .top, footer { padding-left: 16px; padding-right: 16px; }
@@ -86,7 +238,8 @@ footer a { color: var(--muted); padding: 6px 0; }
   h1 { font-size: 34px; }
   .wordmark { font-size: 42px; }
   .mark { width: 152px; height: 152px; }
-  .cards { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+  .apps { padding: 16px 0 56px; }
+  .sub { margin-bottom: 28px; }
   .backdrop { width: 280px; height: 480px; top: 60px; }
   .backdrop svg { width: 480px; height: 480px; right: -200px; }
 }

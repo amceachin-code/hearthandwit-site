@@ -1,6 +1,6 @@
 # hearthandwit-site
 
-The home page of Hearth & Wit, served by GitHub Pages at https://hearthandwit.com. Plain HTML, one stylesheet, and one font file, with no build step and no outside requests.
+The home page of Hearth & Wit, served by GitHub Pages at https://hearthandwit.com. Plain HTML, one stylesheet, and a few font files, with no build step and no outside requests.
 
 The page gives the philosophy behind the apps, one short description and link for each, and the support address, so it also serves as the App Store support and marketing page. Its look comes from a Claude design canvas (desktop and phone artboards), rebuilt here by hand so the page needs no build step and makes no outside requests.
 
@@ -20,9 +20,29 @@ The logo is four rounded tiles: a flame for the hearth, a times sign for math, a
 
 - `logo.svg` is the full mark. It is used in the top bar of both pages and in the hero.
 - `favicon.svg` is a simpler version of the same tiles for a browser tab: a solid cream brain with one groove and fewer, thicker rays, a heavier times sign and pips. The folds of the full brain turn to noise at tab size.
-- `fonts/fredoka-600-latin.woff2` is the lettering font, Fredoka, in one weight and the latin subset. `fonts/OFL.txt` is its SIL Open Font License. The font is served from the site itself, so the page still makes no outside requests. Only the name in the top bar (`.brand`) and the hero heading (`.wordmark`) use it.
+- `fonts/fredoka-600-latin.woff2` is the lettering font, Fredoka, in one weight and the latin subset. `fonts/OFL.txt` is its SIL Open Font License. The font is served from the site itself, so the page still makes no outside requests. The name in the top bar (`.brand`) and the hero heading (`.wordmark`) use it, and so do the numerals on the drawing of Flip Wits' screen (see below).
 
 The name is written "Hearth & Wit" in the markup and shown lowercase by CSS, so screen readers and copied text keep the proper name.
+
+## The app phones
+
+"The apps" section shows each app as a phone with a drawing of its real first screen, so a visitor sees what they will get. The design is option G, "Phones, real screens", from a Claude design canvas.
+
+- Times Tables Games: the table picker, "Which tables today?", with the 2, 5 and 10 times tables picked, in a phone's browser.
+- Printable worksheets: the worksheet form in its answer-key red, with a printed sheet of stacked 4 times problems sliding out under the Print worksheet button.
+- Flip Wits: an iPhone held sideways on its turn screen (the number 42 to guess), on a pale disc with two turning arcs.
+
+Under each phone are the app's mark (inline SVG in `index.html`), its name, the description, an Open button in the app's color, and the small links.
+
+The screens are drawings in HTML and CSS (the `.ttg-`, `.ws-` and `.fw-` classes in `style.css`), not screenshots. They copy the live screens by hand, so when an app's first screen changes, redraw its phone here. Each drawing is one element with `role="img"` and an `aria-label` that describes it, so a screen reader reads the label and not the tiny screen text. The parts inside it carry `aria-hidden="true"` as well, because Chromium does not hide the children of a `role="img"` element on its own; keep that on any part added to a drawing. If a drawing changes, update its label too. Every real link sits outside the drawings.
+
+The fonts are served from the site, never from Google:
+
+- `fonts/andika-400.woff2` and `fonts/andika-700.woff2` are Andika, the typeface of Times Tables Games, copied from the `fonts/` folder of the times-tables-games repository, with its license in `fonts/OFL-Andika.txt`. The Times Tables Games and worksheets screens use it. A browser fetches a weight only when the page uses it, so today only the bold one loads.
+- Flip Wits' rounded numerals use the site's Fredoka. The design drew them in a heavier rounded face (Nunito), but the site serves only Fredoka 600, so the drawing is set at 600 to avoid a faked bold.
+- The small screen text uses the page's system sans.
+
+Three phones sit in a row on a wide screen. At 1020 pixels and narrower they stack one per row, each held to a 480 pixel column.
 
 ## Changing the stylesheet
 

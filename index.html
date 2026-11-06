@@ -11,7 +11,7 @@
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="favicon.svg?v=4" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -46,30 +46,144 @@
     </div>
   </section>
 
+  <!-- The apps: each one is a phone showing a drawing of the app's real first screen, so a visitor sees what
+       they will get, and under it the app's mark and name, the description, an Open button in the app's color,
+       and the small links. The bezels are one neutral grey; each app's color lives on its own screen. The two
+       websites carry a browser address strip, since they run in a phone's browser. Flip Wits, the one iPhone app,
+       is held sideways, as it is played. Each drawing is one picture for screen readers (role="img" with a label),
+       so its tiny screen text is not read out, and every real link sits outside the drawings. The parts inside each
+       drawing also carry aria-hidden="true", because Chromium does not hide the children of a role="img" element
+       by itself, and TalkBack or Chrome's browse mode would otherwise step through every bit of screen text.
+       The drawings copy the live screens by hand: when an app's first screen changes, redraw it here (see README). -->
   <section class="apps" aria-labelledby="apps-title">
     <h2 id="apps-title">The apps</h2>
     <p class="sub">Each one lives at its own address. Nothing to sign up for.</p>
-    <ul class="cards">
-      <li id="times-tables-games" class="card">
-        <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
-        <h3>Times Tables Games</h3>
-        <p>Practice your times tables and division with quick, friendly games. Progress and diplomas stay in the browser, and the games keep working offline.</p>
-        <a class="open" href="https://timestables.hearthandwit.com/">Open Times Tables Games<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <p class="more"><a href="https://timestables.hearthandwit.com/privacy/">Privacy</a><a href="https://timestables.hearthandwit.com/accessibility/">Accessibility</a></p>
+    <!-- role="list" because Safari drops the list semantics of a list drawn without bullets. -->
+    <ul class="app-list" role="list">
+
+      <!-- Times Tables Games: its first screen, the table picker, on desk grey, with 2, 5 and 10 picked. -->
+      <li id="times-tables-games" class="app app-ttg">
+        <div class="stage">
+          <div class="phone" role="img" aria-label="Times Tables Games open in a phone's browser, on its first screen: Which tables today? with the 2, 5 and 10 times tables picked.">
+            <div class="screen ttg" aria-hidden="true">
+              <div class="browser"><span class="url">timestables.hearthandwit.com</span></div>
+              <div class="ttg-page">
+                <div class="ttg-bar">
+                  <span class="ttg-name"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#F5C13E"/><path d="M22 22L42 42M42 22L22 42" stroke="#2A2206" stroke-width="8" stroke-linecap="round"/></svg>Times Tables</span>
+                  <span class="ttg-links"><span>Diploma</span><span>Chart</span></span>
+                </div>
+                <div class="ttg-title">Which tables today?</div>
+                <div class="ttg-hint">Tap the tables you want to practice. The bar under each one shows how well you know it.</div>
+                <div class="ttg-card">
+                  <div class="ttg-mode"><span class="on">× Times tables</span><span>÷ Division</span></div>
+                  <div class="ttg-tiles">
+                    <span>1</span><span class="on">2</span><span>3</span><span>4</span>
+                    <span class="on">5</span><span>6</span><span>7</span><span>8</span>
+                    <span>9</span><span class="on">10</span><span>11</span><span>12</span>
+                  </div>
+                  <div class="ttg-chips"><span>Easy ones: 1, 2, 5, 10</span><span>Up to 5</span><span>Tricky: 6, 7, 8, 9</span><span>All 1 to 12</span></div>
+                  <div class="ttg-note">Practicing the 2, 5 and 10 times tables.</div>
+                  <!-- The next part of the screen, cut off by the screen's edge as it would be. -->
+                  <div class="ttg-range"><span>Multiply by</span><span class="ttg-range-seg"><span class="on">1 to 10</span><span>1 to 12</span><span>Other</span></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-body">
+          <div class="app-head">
+            <!-- The app marks are inline SVG, not image files: each is a few shapes, and inline they cost no extra requests and no cache-busting tags. -->
+            <svg class="app-mark" aria-hidden="true" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#F5C13E"/><path d="M22 22L42 42M42 22L22 42" stroke="#2A2206" stroke-width="7" stroke-linecap="round"/></svg>
+            <h3>Times Tables Games</h3>
+          </div>
+          <p class="app-desc">Practice your times tables and division with quick, friendly games. Progress and diplomas stay in the browser, and the games keep working offline.</p>
+          <a class="open" href="https://timestables.hearthandwit.com/">Open Times Tables Games<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <p class="more"><a href="https://timestables.hearthandwit.com/privacy/">Privacy</a><a href="https://timestables.hearthandwit.com/accessibility/">Accessibility</a></p>
+        </div>
       </li>
-      <li id="worksheets" class="card">
-        <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="9" rx="2"/><path d="M6 14h12v7H6z"/></svg>
-        <h3>Printable worksheets</h3>
-        <p>Free printable times table, division, and color-by-number worksheets. Pick the facts, then print, with an answer key if you want one.</p>
-        <a class="open" href="https://worksheets.hearthandwit.com/">Open the worksheets<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <p class="more"><a href="https://worksheets.hearthandwit.com/division/">Division</a><a href="https://worksheets.hearthandwit.com/color-by-number/">Color by number</a><a href="https://worksheets.hearthandwit.com/privacy/">Privacy</a></p>
+
+      <!-- Printable worksheets: the form in its answer-key red, shortened so the Print worksheet button sits just
+           above a printed sheet that slides out at the bottom of the screen. -->
+      <li id="worksheets" class="app app-ws">
+        <div class="stage">
+          <div class="phone" role="img" aria-label="The worksheets site open in a phone's browser, on its form for the 4 times table, with a printed sheet of stacked 4 times problems coming out at the bottom.">
+            <div class="screen ws" aria-hidden="true">
+              <div class="browser"><span class="url">worksheets.hearthandwit.com</span></div>
+              <div class="ws-page">
+                <div class="ws-title">Times Table Worksheets</div>
+                <div class="ws-hint">Pick the times tables, then click Print worksheet. The sheet updates as you type.</div>
+                <div class="ws-hint"><span class="ws-link">Division worksheets</span> · <span class="ws-link">Color by number</span> · <span class="ws-link">Practice online</span></div>
+                <div class="ws-label">Facts</div>
+                <div>Times tables</div>
+                <div class="ws-field">4</div>
+                <div class="ws-pair"><span>Multiply by, from</span><span>to</span><span class="ws-field">1</span><span class="ws-field">10</span></div>
+                <div class="ws-label">Sheet</div>
+                <div>Layout</div>
+                <div class="ws-seg"><span class="on">Stacked</span><span>One line</span></div>
+                <div>Times-table number goes</div>
+                <div class="ws-seg ws-seg-3"><span class="on">On top</span><span>On bottom</span><span>Mixed</span></div>
+                <div class="ws-print">Print worksheet</div>
+              </div>
+            </div>
+            <!-- The printed sheet, in front of the phone and tilted a little, as if just out of the printer. -->
+            <div class="ws-sheet" aria-hidden="true">
+              <div class="ws-sheet-lines"><span>Name</span><span>Date</span></div>
+              <div class="ws-sheet-title">Multiplication: 4s</div>
+              <div class="ws-probs">
+                <span><span>4</span><span>× 3</span></span><span><span>4</span><span>× 7</span></span><span><span>4</span><span>× 1</span></span><span><span>4</span><span>× 9</span></span><span><span>4</span><span>× 6</span></span>
+                <span><span>4</span><span>× 10</span></span><span><span>4</span><span>× 2</span></span><span><span>4</span><span>× 8</span></span><span><span>4</span><span>× 5</span></span><span><span>4</span><span>× 4</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-body">
+          <div class="app-head">
+            <!-- A red tile holding a cream sheet with a problem row and the answer key's check. -->
+            <svg class="app-mark" aria-hidden="true" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#B3261E"/><rect x="14" y="10" width="36" height="44" rx="4" fill="#FFF9EE"/><path d="M21 18L29 26M29 18L21 26M34 26H43" stroke="#3B352D" stroke-width="3.5" stroke-linecap="round"/><path d="M21 39L27.5 45.5L43 32" fill="none" stroke="#B3261E" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h3>Printable worksheets</h3>
+          </div>
+          <p class="app-desc">Free printable times table, division, and color-by-number worksheets. Pick the facts, then print, with an answer key if you want one.</p>
+          <a class="open" href="https://worksheets.hearthandwit.com/">Open the worksheets<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <p class="more"><a href="https://worksheets.hearthandwit.com/division/">Division</a><a href="https://worksheets.hearthandwit.com/color-by-number/">Color by number</a><a href="https://worksheets.hearthandwit.com/privacy/">Privacy</a></p>
+        </div>
       </li>
-      <li id="flip-wits" class="card">
-        <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/><path d="M3 9a9 9 0 0 1 2-4M21 15a9 9 0 0 1-2 4"/></svg>
-        <h3>Flip Wits</h3>
-        <p>A family party game for the phone on your forehead. Your team shouts clues, you say the answer, and you flip the phone to score. In testing, not yet on the App Store.</p>
-        <a class="open" href="https://flipwits.hearthandwit.com/">Open Flip Wits<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <p class="more"><a href="https://flipwits.hearthandwit.com/support/">Support</a><a href="https://flipwits.hearthandwit.com/privacy/">Privacy</a></p>
+
+      <!-- Flip Wits: an iPhone held sideways on its turn screen (a big number to guess, the got-it count in green,
+           the pass count in orange), on a pale disc with two turning arcs, after the drawing on the Flip Wits site. -->
+      <li id="flip-wits" class="app app-fw">
+        <div class="stage fw-stage">
+          <svg class="fw-disc" aria-hidden="true" viewBox="0 0 280 280" fill="none" stroke="#94A3B8" stroke-width="4" stroke-linecap="round"><circle cx="140" cy="140" r="140" fill="#EEF2F7" stroke="none"/><path d="M46.7 46.7A132 132 0 0 1 121.6 9.3M233.3 233.3A132 132 0 0 1 158.4 270.7"/></svg>
+          <div class="phone phone-side" role="img" aria-label="Flip Wits on an iPhone held sideways, on a turn: the number 42 to guess, with 4 got it in green and 1 pass in orange.">
+            <div class="screen fw" aria-hidden="true">
+              <div class="fw-top">
+                <span class="fw-team">Reds · Round 2/3</span>
+                <span class="fw-deck">Numbers · × −</span>
+                <span class="fw-score">
+                  <span class="fw-got"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>4</span>
+                  <span class="fw-pass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17A8 8 0 0 1 19 11M14 11.5h5.5V6"/></svg>1</span>
+                </span>
+              </div>
+              <div class="fw-timer"><span class="fw-track"><span></span></span><span>0:37</span></div>
+              <div class="fw-number">42</div>
+              <div class="fw-foot">
+                <span class="fw-last">last 18<svg viewBox="0 0 24 24" fill="none" stroke="#1FB889" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>
+                <!-- The four operation chips: minus and times are on, plus and divide are off and struck through. -->
+                <span class="fw-ops"><span class="off">+</span><span>−</span><span>×</span><span class="off">÷</span></span>
+                <span class="fw-end">hold to End</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-body">
+          <div class="app-head">
+            <!-- After the iOS icon: a rounded 42 drawn as strokes, with the green "got it" bar below. -->
+            <svg class="app-mark" aria-hidden="true" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#0B0B0F"/><path d="M24 38V16L11 32H28M35 22Q36 15.5 43.5 15.5Q51.5 15.5 51.5 23Q51.5 27.5 46.5 31.5L35.5 38H53" fill="none" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="18" y="46" width="28" height="5" rx="2.5" fill="#1FB889"/></svg>
+            <h3>Flip Wits</h3>
+          </div>
+          <p class="app-desc">A family party game for the phone on your forehead. Your team shouts clues, you say the answer, and you flip the phone to score. In testing, not yet on the App Store.</p>
+          <a class="open" href="https://flipwits.hearthandwit.com/">Open Flip Wits<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <p class="more"><a href="https://flipwits.hearthandwit.com/support/">Support</a><a href="https://flipwits.hearthandwit.com/privacy/">Privacy</a></p>
+        </div>
       </li>
     </ul>
   </section>
