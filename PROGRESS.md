@@ -35,7 +35,12 @@ Pushed to `main` on 2026-11-05 on the user's go-ahead, after they saw a local pr
 
 ### Next steps
 
-- After a push, confirm the live page and that browsers pick up `?v=3`.
+- None for the logo. The live check is recorded below.
+
+### Live
+
+- Commit cddeb8c was live at https://hearthandwit.com/ about 35 seconds after the push. The home page, `logo.svg?v=3`, `favicon.svg?v=3`, `style.css?v=3`, the font file (served as `font/woff2`), and `fonts/OFL.txt` all answer 200. A missing path answers 404 with the custom page, which shows the new logo.
+- Checked with requests from the command line, not in a browser on the live address.
 
 
 ## 2026-11-03, The modern look
