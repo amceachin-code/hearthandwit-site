@@ -6,7 +6,7 @@
    name in the top bar and the hero, and for the numerals on the drawing of Flip Wits' screen. "swap" shows the system font at once and trades it for Fredoka when it arrives. */
 @font-face { font-family: "Fredoka"; src: url("fonts/fredoka-600-latin.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
 /* Andika (SIL Open Font License, fonts/OFL-Andika.txt) is Times Tables Games' own typeface, copied from that app's
-   repository so the drawings of the Times Tables Games and worksheets screens look like the real ones without a
+   repository so the drawing of the worksheets screen looks like the real one without a
    request to Google. Flip Wits' screen uses the Fredoka above, and the small screen text uses the system sans. */
 @font-face { font-family: "Andika"; src: url("fonts/andika-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
 @font-face { font-family: "Andika"; src: url("fonts/andika-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
@@ -87,34 +87,14 @@ h2 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
 .browser::before { content: ""; position: absolute; top: 9px; left: 50%; width: 68px; height: 19px; margin-left: -34px; border-radius: 10px; background: #0B0B0F; }
 .url { height: 24px; border-radius: 8px; background: #EEF1F5; display: flex; align-items: center; justify-content: center; font-family: var(--sans); font-size: 10.5px; font-weight: 500; line-height: 1; color: #334155; }
 
-/* Times Tables Games' table picker, after the live screen: Andika (the app's own typeface) for its type,
-   the system sans for the small text. Picked items are yellow with a dark edge, as in the app. */
-.ttg { background: #E7ECF2; color: #1B2330; }
-.ttg-page { flex: 1; display: flex; flex-direction: column; gap: 7px; padding: 10px 12px; font-family: Andika, var(--sans); line-height: 1; }
-.ttg-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px; height: 24px; }
-.ttg-name { display: flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 700; }
-.ttg-name svg { display: block; width: 18px; height: 18px; }
-.ttg-links { display: flex; gap: 10px; font-size: 10px; font-weight: 700; color: #4B5563; }
-.ttg-title { margin-top: 2px; font-size: 18px; font-weight: 700; line-height: 1.15; letter-spacing: -.01em; }
-.ttg-hint, .ttg-note { font-family: var(--sans); font-size: 9px; line-height: 12.5px; color: #4B5563; }
-.ttg-card { display: flex; flex-direction: column; gap: 7px; margin-top: 2px; padding: 9px; background: #fff; border-radius: 12px; }
-.ttg-mode { display: grid; grid-template-columns: 1fr 1fr; height: 26px; border: 1px solid #CBD5E1; border-radius: 8px; overflow: hidden; font-size: 10.5px; font-weight: 700; }
-.ttg-mode span, .ttg-range-seg span { display: flex; align-items: center; justify-content: center; background: #F1F4F8; }
-.ttg-mode .on, .ttg-range-seg .on { background: #F5C13E; color: #2A2206; box-shadow: inset 0 0 0 2px #2A2206; border-radius: 7px 0 0 7px; }
-/* The 4 by 3 grid of tables. Each tile's ::after is its progress bar. */
-.ttg-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5px; font-size: 14px; font-weight: 700; }
-.ttg-tiles span { height: 36px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; border-radius: 7px; background: #F4F6F9; border: 1.5px solid #CBD5E1; }
-.ttg-tiles span::after { content: ""; display: block; width: 18px; height: 3px; border-radius: 2px; background: #E2E8F0; box-shadow: 0 0 0 .75px #94A3B8; }
-.ttg-tiles .on { background: #F5C13E; border: 2px solid #2A2206; color: #2A2206; }
-.ttg-tiles .on::after { background: #E3AE2A; box-shadow: 0 0 0 .75px #2A2206; }
-.ttg-chips { display: flex; flex-wrap: wrap; gap: 4px; font-family: var(--sans); font-size: 8.5px; line-height: 1.2; }
-.ttg-chips span { padding: 3px 6px; border: 1px solid #CBD5E1; border-radius: 6px; background: #fff; }
-.ttg-note { line-height: 1.3; }
-.ttg-range { border-top: 1px solid #CBD5E1; padding-top: 7px; display: flex; flex-direction: column; gap: 5px; font-family: var(--sans); font-size: 10px; line-height: 1.2; }
-.ttg-range-seg { align-self: flex-end; display: grid; grid-template-columns: auto auto auto; height: 22px; border: 1px solid #CBD5E1; border-radius: 7px; overflow: hidden; font-family: Andika, var(--sans); font-size: 9.5px; font-weight: 700; line-height: 1; }
-.ttg-range-seg span { padding: 0 7px; }
-.ttg-range-seg span + span { border-left: 1px solid #CBD5E1; }
-.ttg-range-seg .on { border-radius: 6px 0 0 6px; }
+/* Math Hound's screen is a real screenshot (apps/math-hound-home.png, retaken by a script; see README), not a
+   drawing. The picture is a hair taller than the glass (an iPhone's screen is 696 by 1513, the glass 232 by 492),
+   so it is fitted to the width and held to the top: the 12px lost are the strip of road under the houses.
+   The background is the screen's own grey, shown while the picture loads; the ink colors the home bar.
+   The camera island is drawn over the picture's status bar, where a real phone has it. */
+.mh { background: #E7ECF2; color: #1B2330; }
+.mh img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.mh::before { content: ""; position: absolute; z-index: 1; top: 9px; left: 50%; width: 68px; height: 19px; margin-left: -34px; border-radius: 10px; background: #0B0B0F; }
 
 /* The worksheets form, in its answer-key red, shortened (no Grid fields or extra Sheet options) so the
    Print worksheet button sits above the printed sheet. The bottom padding leaves the screen's foot for the sheet. */

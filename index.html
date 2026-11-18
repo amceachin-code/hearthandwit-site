@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hearth &amp; Wit</title>
-<meta name="description" content="Wholesome games for families and classrooms: Times Tables Games, printable worksheets, and Flip Wits. Built with intention, with no ads, no accounts, and nothing collected.">
+<meta name="description" content="Wholesome games for families and classrooms: Math Hound, printable worksheets, and Flip Wits. Built with intention, with no ads, no accounts, and nothing collected.">
 <meta property="og:title" content="Hearth &amp; Wit">
-<meta property="og:description" content="Wholesome games for families and classrooms: Times Tables Games, printable worksheets, and Flip Wits. Built with intention, with no ads, no accounts, and nothing collected.">
+<meta property="og:description" content="Wholesome games for families and classrooms: Math Hound, printable worksheets, and Flip Wits. Built with intention, with no ads, no accounts, and nothing collected.">
 <meta property="og:url" content="https://hearthandwit.com/">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="favicon.svg?v=4" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -19,7 +19,7 @@
   <!-- The logo: the four tiles beside the name. The image is decorative (empty alt) because the name is right next to it. -->
   <a class="brand" href="#main"><img src="logo.svg?v=4" alt="" width="28" height="28">Hearth &amp; Wit</a>
   <nav aria-label="Sections">
-    <a href="#times-tables-games">Times Tables Games</a>
+    <a href="#math-hound">Math Hound</a>
     <a href="#worksheets">Worksheets</a>
     <a href="#flip-wits">Flip Wits</a>
     <a href="#support">Support</a>
@@ -46,7 +46,7 @@
     </div>
   </section>
 
-  <!-- The apps: each one is a phone showing a drawing of the app's real first screen, so a visitor sees what
+  <!-- The apps: each one is a phone showing the app's real first screen (a screenshot for Math Hound, a drawing for the other two), so a visitor sees what
        they will get, and under it the app's mark and name, the description, an Open button in the app's color,
        and the small links. The bezels are one neutral grey; each app's color lives on its own screen. The two
        websites carry a browser address strip, since they run in a phone's browser. Flip Wits, the one iPhone app,
@@ -61,32 +61,17 @@
     <!-- role="list" because Safari drops the list semantics of a list drawn without bullets. -->
     <ul class="app-list" role="list">
 
-      <!-- Times Tables Games: its first screen, the table picker, on desk grey, with 2, 5 and 10 picked. -->
-      <li id="times-tables-games" class="app app-ttg">
+      <!-- Math Hound: a real screenshot of the app's first screen (Leo home), not a drawing like the other two.
+           It is taken from the iOS Simulator by tools/site-screenshot.js in the times-tables-games repository, and
+           that repository's WORKFLOW.md has it retaken whenever the home screen changes (see README). The picture
+           is an <img> with its own alt text, so the phone needs no role="img". Raise ?v= when the picture changes.
+           The empty span keeps old links to #times-tables-games, this section's name until 2026-11-17, working. -->
+      <li id="math-hound" class="app app-ttg">
+        <span id="times-tables-games"></span>
         <div class="stage">
-          <div class="phone" role="img" aria-label="Times Tables Games open in a phone's browser, on its first screen: Which tables today? with the 2, 5 and 10 times tables picked.">
-            <div class="screen ttg" aria-hidden="true">
-              <div class="browser"><span class="url">timestables.hearthandwit.com</span></div>
-              <div class="ttg-page">
-                <div class="ttg-bar">
-                  <span class="ttg-name"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#F5C13E"/><path d="M22 22L42 42M42 22L22 42" stroke="#2A2206" stroke-width="8" stroke-linecap="round"/></svg>Times Tables</span>
-                  <span class="ttg-links"><span>Diploma</span><span>Chart</span></span>
-                </div>
-                <div class="ttg-title">Which tables today?</div>
-                <div class="ttg-hint">Tap the tables you want to practice. The bar under each one shows how well you know it.</div>
-                <div class="ttg-card">
-                  <div class="ttg-mode"><span class="on">× Times tables</span><span>÷ Division</span></div>
-                  <div class="ttg-tiles">
-                    <span>1</span><span class="on">2</span><span>3</span><span>4</span>
-                    <span class="on">5</span><span>6</span><span>7</span><span>8</span>
-                    <span>9</span><span class="on">10</span><span>11</span><span>12</span>
-                  </div>
-                  <div class="ttg-chips"><span>Easy ones: 1, 2, 5, 10</span><span>Up to 5</span><span>Tricky: 6, 7, 8, 9</span><span>All 1 to 12</span></div>
-                  <div class="ttg-note">Practicing the 2, 5 and 10 times tables.</div>
-                  <!-- The next part of the screen, cut off by the screen's edge as it would be. -->
-                  <div class="ttg-range"><span>Multiply by</span><span class="ttg-range-seg"><span class="on">1 to 10</span><span>1 to 12</span><span>Other</span></span></div>
-                </div>
-              </div>
+          <div class="phone">
+            <div class="screen mh">
+              <img src="apps/math-hound-home.png?v=1" width="696" height="1513" alt="Math Hound on an iPhone, on its first screen. A brown dog named Ruby wants to go to the park, and each right answer is one more step there. Below are three houses to pick from: Plus and Minus for ages 5 to 7, Times tables, and Division.">
             </div>
           </div>
         </div>
@@ -94,9 +79,9 @@
           <div class="app-head">
             <!-- The app marks are inline SVG, not image files: each is a few shapes, and inline they cost no extra requests and no cache-busting tags. -->
             <svg class="app-mark" aria-hidden="true" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#F5C13E"/><path d="M22 22L42 42M42 22L22 42" stroke="#2A2206" stroke-width="7" stroke-linecap="round"/></svg>
-            <h3>Times Tables Games</h3>
+            <h3>Math Hound</h3>
           </div>
-          <p class="app-desc">Practice your times tables and division with quick, friendly games. Progress and diplomas stay in the browser, and the games keep working offline.</p>
+          <p class="app-desc">Math practice you can play: adding and subtracting, times tables, and division, with a dog to walk to the park. On the web it is called Times Tables Games. Progress and diplomas stay in the browser, and the games keep working offline.</p>
           <a class="open" href="https://timestables.hearthandwit.com/">Open Times Tables Games<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <p class="more"><a href="https://timestables.hearthandwit.com/privacy/">Privacy</a><a href="https://timestables.hearthandwit.com/accessibility/">Accessibility</a></p>
         </div>

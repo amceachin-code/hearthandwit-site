@@ -26,19 +26,35 @@ The name is written "Hearth & Wit" in the markup and shown lowercase by CSS, so 
 
 ## The app phones
 
-"The apps" section shows each app as a phone with a drawing of its real first screen, so a visitor sees what they will get. The design is option G, "Phones, real screens", from a Claude design canvas.
+"The apps" section shows each app as a phone with its real first screen, so a visitor sees what they will get: a screenshot for Math Hound, and a drawing for the other two. The design is option G, "Phones, real screens", from a Claude design canvas.
 
-- Times Tables Games: the table picker, "Which tables today?", with the 2, 5 and 10 times tables picked, in a phone's browser.
+- Math Hound (the iPhone and iPad app of Times Tables Games; this section had the website's name until 2026-11-17): a screenshot of the app's first screen, Leo home, with the dog and a house for each side. See "Math Hound's screenshot" below.
 - Printable worksheets: the worksheet form in its answer-key red, with a printed sheet of stacked 4 times problems sliding out under the Print worksheet button.
 - Flip Wits: an iPhone held sideways on its turn screen (the number 42 to guess), on a pale disc with two turning arcs.
 
 Under each phone are the app's mark (inline SVG in `index.html`), its name, the description, an Open button in the app's color, and the small links.
 
-The screens are drawings in HTML and CSS (the `.ttg-`, `.ws-` and `.fw-` classes in `style.css`), not screenshots. They copy the live screens by hand, so when an app's first screen changes, redraw its phone here. Each drawing is one element with `role="img"` and an `aria-label` that describes it, so a screen reader reads the label and not the tiny screen text. The parts inside it carry `aria-hidden="true"` as well, because Chromium does not hide the children of a `role="img"` element on its own; keep that on any part added to a drawing. If a drawing changes, update its label too. Every real link sits outside the drawings.
+The worksheets and Flip Wits screens are drawings in HTML and CSS (the `.ws-` and `.fw-` classes in `style.css`), not screenshots. They copy the live screens by hand, so when an app's first screen changes, redraw its phone here. Each drawing is one element with `role="img"` and an `aria-label` that describes it, so a screen reader reads the label and not the tiny screen text. The parts inside it carry `aria-hidden="true"` as well, because Chromium does not hide the children of a `role="img"` element on its own; keep that on any part added to a drawing. If a drawing changes, update its label too. Every real link sits outside the drawings.
+
+### Math Hound's screenshot
+
+`apps/math-hound-home.png` is a real screenshot of the app's home screen, 696 by 1513 pixels (three times the 232 pixel glass of the phone on the page). It is never edited by hand. A script in the times-tables-games repository takes it from the iOS Simulator and writes it here:
+
+```
+node tools/site-screenshot.js <path to this repository>
+```
+
+That repository's `WORKFLOW.md` ("The company site's picture") makes this part of the work there: any pull request that changes how the app's home screen looks retakes the picture and opens a pull request here with it. In that pull request:
+
+- Raise the `?v=` tag on the `<img>` in `index.html`, so browsers fetch the new picture.
+- Update the `alt` text if what the screen shows has changed in a way a blind visitor should hear about.
+- If the script prints a new size, set the `<img>`'s `width` and `height` to it.
+
+The picture is a real `<img>` with its own `alt`, so its phone has no `role="img"`. The glass crops the last 12 pixels of the picture's height (`object-fit: cover`, held to the top), and the camera island is drawn over the status bar by `.mh::before`. The section's Open button still goes to the website, Times Tables Games, until the app is in the App Store; an empty `<span id="times-tables-games">` keeps old links to the section's first name working.
 
 The fonts are served from the site, never from Google:
 
-- `fonts/andika-400.woff2` and `fonts/andika-700.woff2` are Andika, the typeface of Times Tables Games, copied from the `fonts/` folder of the times-tables-games repository, with its license in `fonts/OFL-Andika.txt`. The Times Tables Games and worksheets screens use it. A browser fetches a weight only when the page uses it, so today only the bold one loads.
+- `fonts/andika-400.woff2` and `fonts/andika-700.woff2` are Andika, the typeface of Times Tables Games, copied from the `fonts/` folder of the times-tables-games repository, with its license in `fonts/OFL-Andika.txt`. The worksheets screen uses it (Math Hound's screen did too while it was a drawing). A browser fetches a weight only when the page uses it, so today only the bold one loads.
 - Flip Wits' rounded numerals use the site's Fredoka. The design drew them in a heavier rounded face (Nunito), but the site serves only Fredoka 600, so the drawing is set at 600 to avoid a faked bold.
 - The small screen text uses the page's system sans.
 
